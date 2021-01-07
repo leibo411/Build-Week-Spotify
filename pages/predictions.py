@@ -5,6 +5,9 @@ import dash_core_components as dcc
 import dash_html_components as html
 from dash.dependencies import Input, Output, State
 import pandas as pd
+from test import df
+
+track_energy = df['energy']
 
 # Imports from this application
 from app import app
@@ -34,7 +37,6 @@ column1 = dbc.Col(
     md=6,
 )
 
-input_types = ['text']
 column2 = dbc.Col(
     [
 
@@ -46,8 +48,9 @@ column2 = dbc.Col(
                 html.Hr(),
                 html.Label('Track ID'), html.Br(),html.Br(),
                 html.Div(id='output-submit'),
-                html.Br(), html.Hr()
-                # html.Div(id='output-submit', style={'display': 'none'})
+                html.Br(), html.Hr(),
+                html.Label('Track Energy', track_energy)
+                
     ]
 )
 
@@ -66,5 +69,10 @@ def update_output(clicked, input1):
         pd.DataFrame([track_id]).to_csv('track_id.csv')
         return 'Track ID is => ' + track_id
 
+def update_output(df):
+    return df['energy']
 
-# print(track_id)
+
+debug=True
+
+# track_features = df['energy']
