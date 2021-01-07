@@ -7,7 +7,8 @@ from dash.dependencies import Input, Output, State
 import pandas as pd
 from test import df
 
-track_energy = df['energy']
+# track_energy = df['energy']
+track_energy = df.iloc[0,1]
 
 # Imports from this application
 from app import app
@@ -49,7 +50,12 @@ column2 = dbc.Col(
                 html.Label('Track ID'), html.Br(),html.Br(),
                 html.Div(id='output-submit'),
                 html.Br(), html.Hr(),
-                html.Label('Track Energy', track_energy)
+                # html.Label('Track Energy', track_energy)
+                html.Div(f'Song Id of a song you may enjoy! {track_energy}', style={'whiteSpace': 'pre-line'})
+                # dcc.Markdown(f'''
+                # This is where we can put our results {track_energy}
+                # '''
+                # )
                 
     ]
 )
@@ -69,10 +75,8 @@ def update_output(clicked, input1):
         pd.DataFrame([track_id]).to_csv('track_id.csv')
         return 'Track ID is => ' + track_id
 
-def update_output(df):
-    return df['energy']
+# def update_output(df):
+#     return df['energy']
 
 
-debug=True
-
-# track_features = df['energy']
+# track_energy = df['energy']

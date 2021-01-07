@@ -35,7 +35,7 @@ headers = {
 BASE_URL = 'https://api.spotify.com/v1/'
 
 # Track ID from the URI
-track_id = '6y0igZArWVi6Iz0rj35c1Y'
+# track_id = '6y0igZArWVi6Iz0rj35c1Y'
 
 # actual GET request with proper header
 r = requests.get(BASE_URL + 'audio-features/' + track_id, headers=headers)
