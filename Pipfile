@@ -13,6 +13,7 @@ plotly = "*"
 pandas = "*"
 spotipy = "*"
 requests = "*"
+sklearn = "*"
 
 [requires]
 python_version = "3"

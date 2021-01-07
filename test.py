@@ -2,6 +2,18 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import requests
 import pandas as pd
+import pickle
+from sklearn import model_selection
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+# import finalized_model
+
+# #pickle_filename = 
+# #Loading the pickle model 
+# loaded_model = pickle.load(open('finalized_model.pkl', 'rb'))
+# #using the model to generate song predictions. 
+# result = loaded_model.predict(df)
+
 # from pages.predictions import track_id
 
 id_df = pd.read_csv('track_id.csv') #.reset_index()
