@@ -2,7 +2,12 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import requests
 import pandas as pd
-from pages.predictions import track_id
+# from pages.predictions import track_id
+
+id_df = pd.read_csv('track_id.csv') #.reset_index()
+track_id = id_df.iloc[0,1]
+# print(track_id)
+
 
 cid = '994a02e31176479b90f256314374ed16'
 secret = '057916dd2e9d48c096b174fae78f1c4e'
@@ -30,7 +35,7 @@ headers = {
 BASE_URL = 'https://api.spotify.com/v1/'
 
 # Track ID from the URI
-# track_id = '6y0igZArWVi6Iz0rj35c1Y'
+track_id = '6y0igZArWVi6Iz0rj35c1Y'
 
 # actual GET request with proper header
 r = requests.get(BASE_URL + 'audio-features/' + track_id, headers=headers)
@@ -42,4 +47,5 @@ r = r.json()
 df = pd.DataFrame(r, columns=['danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo'], index=[1])
 print(df.head())
 
+# print(id_df.shape)
 
