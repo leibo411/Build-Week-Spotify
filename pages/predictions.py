@@ -3,7 +3,7 @@ import dash
 import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 
 # Imports from this application
 from app import app
@@ -36,31 +36,29 @@ column1 = dbc.Col(
 input_types = ['text']
 column2 = dbc.Col(
     [
-        html.H2('Your next favorite song', className='mb-5'),
-        html.Label('Input your track ID:  '),
-        dcc.Input(
-            placeholder = 'Track ID',
-            type = 'text',
-            value = ''
-        )
-        # html.Div([
-        #     dcc.input(
-        #         id='my_{}'.format(x),
-        #         type=x,
-        #         placeholder="insert{}".format(x),
-        #     ) for x in input_types
-        
 
+                html.Label('Song ID: '),
+                dcc.Input(id='input-1-submit', type='text', placeholder='Enter ID'),
+                # html.Br(),
+                # html.Label('Text 2: '),
+                # dcc.Input(id='input-2-submit', type='text', placeholder='Enter surname'),
+                html.Br(),html.Br(),
+                html.Button('Submit', id='btn-submit'),
+                html.Br(),
+                html.Hr(),
+                html.Label('Track ID'), html.Br(),html.Br(),
+                html.Div(id='output-submit'),
+                html.Br(), html.Hr()
     ]
 )
 
-# ["Input: ", dcc.Input(id='my-input', value='initial value', type='text')]
 
 layout = dbc.Row([column1, column2])
 
-
-# # 1:07:29 in the unit 2 build 3 dash inputs and outputs video
-# @app.callback(
-#     Output(''),
-#     Input(component_id='my-input', component_property='value')
-# )
+@app.callback(Output('output-submit', 'children'),
+                [Input('btn-submit', 'n_clicks')],
+                [State('input-1-submit', 'value')]) # ,State('input-2-submit', 'value')])
+def update_output(clicked, input1): # , input2):
+    if clicked:
+        track_id = input1 
+        return 'Track ID is => ' + track_id
